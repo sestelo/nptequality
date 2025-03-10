@@ -1,0 +1,29 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# npregtest: Nonparametric Regression Tests for the Equality of k Functions
+
+[![DOI]()]() [![CRAN status]()]() [![CRAN RStudio mirror downloads]()]()
+
+`npregtest` is an R package that provides a method to test the
+hypothesis of equality of the k regression functions. The test is based
+on the comparison of two estimators of the distribution of the errors in
+each population. Kolmogorov-Smirnov and Cramér-von Mises type statistics
+are considered. A bootstrap procedure is used to approximates the
+critical values of the test.
+
+## Installation
+
+<!-- `npregtest` is available through both -->
+
+<!-- [CRAN](https://cran.r-project.org/) and GitHub. -->
+
+`npregtest` is available through GitHub.
+
+<!-- Get the released version from CRAN: `install.packages("clustcurv")` -->
+
+Or the development version from GitHub:
+`# install.packages("devtools") devtools::install_github("sestelo/npregtest")`

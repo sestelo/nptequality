@@ -1,0 +1,38 @@
+#' \code{npregtest}: Nonparametric regression tests for the equality of k functions
+#'
+#'
+#' This package provides a method to test the hypothesis of equality of
+#' the k regression functions. The test is based on the comparison of two estimators
+#' of the distribution of the errors in each population. Kolmogorov-Smirnov and
+#' Cramér-von Mises type statistics are considered. A bootstrap procedure is used to
+#'  approximates the critical values of the test.
+#'
+#' @name npregtest
+#' @docType package
+#' @details \tabular{ll}{ Package: \tab npregtest \cr Type: \tab Package\cr
+#'  License: \tab MPL-2.0\cr}
+#'
+#'\code{npregtest} is designed along lines similar to those of other \code{R}
+#' packages. This software helps the user test teh equlity of  multiple curves.
+#'  In addition, it enables both numerical
+#' and graphical outputs to be displayed (by means of ggplot2). The package provides
+#' the  \code{equalreg()} function that test the null hyphothesis of equality of the k
+#'  the curves. The \code{autoplot()} function
+#'  let the user draws the resulted estimated curves and the empirical
+#' cumulative distribution functions for the residuals of each group.
+#'
+#'
+#' For a listing of all routines in the npregtest package type:
+#' \code{library(help="npregtest")}.
+#'
+#'
+#' @author Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández.
+#'
+#' @references
+#'
+#' Pardo-Fernandez, J. C., Van Keilegom, I. and Gonzalez-Manteiga, W. (2007). Testing
+#' for the equality of K regression functions. Statistica Sinica, 17, 1115-1137.
+#'
+
+
+"_PACKAGE"

@@ -1,0 +1,31 @@
+Package: npregtest
+Type: Package
+Title: Nonparametric regression tests for the equality of k functions
+Version: 1.0.0
+Date: 2025-02-21
+Maintainer: Marta Sestelo <sestelo@uvigo.gal>
+Authors@R: c(person("Marta", "Sestelo",email= "sestelo@uvigo.gal", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4284-6509")),
+  person("Nora", "M. Villanueva",email= "nmvillanueva@uvigo.es", role = c("aut"),
+  comment = c(ORCID = "0000-0001-8085-2745")), person("Juan Carlos", "Pardo-Fernández",email= "juancp@uvigo.gal", 
+  role = c("aut"), comment = c(ORCID = "0000-0002-8260-374X")))
+Description: A method to test the hypothesis of equality of the k regression functions. 
+        The test is based on the comparison of two estimators of the distribution of 
+        the errors in each population. Kolmogorov-Smirnov and Cramér-von Mises type
+        statistics are considered. A bootstrap procedure is used to
+        approximates the critical values of the test.
+Depends:
+    R (>= 4.3.0)
+License: MPL-2.0
+Encoding: UTF-8
+Imports:
+    doParallel,
+    doRNG,
+    foreach,
+    ggplot2,
+    npregfast,
+    parallel,
+    patchwork,
+    scales
+Suggests:
+    plotly
+RoxygenNote: 7.3.2
