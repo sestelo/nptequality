@@ -12,7 +12,7 @@ Description: A method to test the hypothesis of equality of the k regression fun
         The test is based on the comparison of two estimators of the distribution of 
         the errors in each population. Kolmogorov-Smirnov and Cramér-von Mises type
         statistics are considered. A bootstrap procedure is used to
-        approximates the critical values of the test.martasxxs
+        approximates the critical values of the test.
 Depends:
     R (>= 4.3.0)
 License: MPL-2.0
