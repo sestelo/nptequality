@@ -5,3 +5,6 @@
 .Rbuildignore
 .DS_Store
 npregtest.Rproj
+.Rdata
+.httr-oauth
+.quarto
