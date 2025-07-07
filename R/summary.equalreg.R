@@ -20,7 +20,7 @@
 #' \item{components}{A collection of components of the equalreg object.}
 #'
 #'
-#'@author Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández.
+#'@author Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández
 #'
 #'@examples
 #'
