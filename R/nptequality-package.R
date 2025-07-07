@@ -7,7 +7,7 @@
 #' Cramér-von Mises type statistics are considered. A bootstrap procedure is used to
 #'  approximates the critical values of the test.
 #'
-#' @name npregtest
+#' @name nptequality
 #' @docType package
 #' @details \tabular{ll}{ Package: \tab nptequality \cr Type: \tab Package\cr
 #'  License: \tab MPL-2.0\cr}
@@ -22,8 +22,8 @@
 #' cumulative distribution functions for the residuals of each group.
 #'
 #'
-#' For a listing of all routines in the npregtest package type:
-#' \code{library(help="npregtest")}.
+#' For a listing of all routines in the nptequality package type:
+#' \code{library(help="nptequality")}.
 #'
 #'
 #' @author Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández.

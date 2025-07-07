@@ -52,5 +52,5 @@ summary(out)
 
 }
 \author{
-Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández.
+Marta Sestelo, Nora M. Villanueva and Juan Carlos Pardo-Fernández
 }

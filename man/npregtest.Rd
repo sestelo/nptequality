@@ -2,7 +2,8 @@
 % Please edit documentation in R/nptequality-package.R
 \docType{package}
 \name{npregtest}
-\alias{npregtest-package}
+\alias{nptequality}
+\alias{nptequality-package}
 \alias{npregtest}
 \title{\code{nptequality}: Nonparametric  tests for the equality of k regressions functions}
 \description{
