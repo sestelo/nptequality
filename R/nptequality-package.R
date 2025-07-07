@@ -1,4 +1,4 @@
-#' \code{npregtest}: Nonparametric regression tests for the equality of k functions
+#' \code{nptequality}: Nonparametric  tests for the equality of k regressions functions
 #'
 #'
 #' This package provides a method to test the hypothesis of equality of
@@ -9,16 +9,16 @@
 #'
 #' @name npregtest
 #' @docType package
-#' @details \tabular{ll}{ Package: \tab npregtest \cr Type: \tab Package\cr
+#' @details \tabular{ll}{ Package: \tab nptequality \cr Type: \tab Package\cr
 #'  License: \tab MPL-2.0\cr}
 #'
-#'\code{npregtest} is designed along lines similar to those of other \code{R}
-#' packages. This software helps the user test teh equlity of  multiple curves.
+#'\code{nptequality} is designed along lines similar to those of other \code{R}
+#' packages. This software helps the user test the equality of  several regression curves.
 #'  In addition, it enables both numerical
 #' and graphical outputs to be displayed (by means of ggplot2). The package provides
-#' the  \code{equalreg()} function that test the null hyphothesis of equality of the k
+#' the  \code{equalreg()} function that tests the null hyphothesis of equality of the k
 #'  the curves. The \code{autoplot()} function
-#'  let the user draws the resulted estimated curves and the empirical
+#'  lets the user draw the estimated curves and the empirical
 #' cumulative distribution functions for the residuals of each group.
 #'
 #'

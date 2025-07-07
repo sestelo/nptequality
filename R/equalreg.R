@@ -17,10 +17,10 @@
 #' @param hmin Minimum value for the bandwidths. Defaults to 0.
 #' @param hmax Maximum value for the bandwidths. Defaults to 1.
 #' @param nh Number of points in the grid for the bandwidths. Defaults to 30.
-#' @param nboot Number of bootstrap repeats. Defaults to 100.
+#' @param nboot Number of bootstrap repeats. Defaults to 500.
 #' @param tstat Test statistic to be used. Options include "KS"
-#' (Kolmogorov-Smirnov) or "CM" (Cramer-von Mises) type. Default is "KS".
-#' @param cluster A logical value. If  \code{TRUE}, the
+#' (Kolmogorov-Smirnov) or "CM" (Cramér-von Mises) type. Default is "KS".
+#' @param parallel A logical value. If  \code{TRUE}, the
 #'  testing procedure is  parallelized. Note that there are cases
 #'  (e.g., a low number of bootstrap repetitions) that R will gain in
 #'  performance through serial computation. R takes time to distribute tasks
@@ -42,7 +42,7 @@
 #' @import npregfast
 #'
 #' @return A list containing test results,
-#' including the test statistic and p-value.
+#' including the test statistics and p-values.
 #'
 #' @export
 #'
@@ -62,7 +62,7 @@
 #' y <- c(y1, y2)
 #' f <- c(rep(1, n1), rep(2, n2))
 #' out <- equalreg(x = x, y = y, f = f, tstat = "KS", hmin = 0.05, hmax = 0.5,
-#' nh = 46, nboot = 100, cluster = FALSE, seed = 300716)
+#' nh = 46, nboot = 100, parallel = FALSE, seed = 300716)
 #' out
 #'
 #'\dontrun{
@@ -73,15 +73,15 @@
 #'
 
 equalreg <- function(x, y, f, m_bandwidths = "cv", sigma_bandwidths = "cv",
-                     hmin = 0, hmax = 1, nh = 30, nboot = 100, tstat = "KS",
-                     cluster = FALSE, ncores = NULL, seed = NULL){
+                     hmin = 0, hmax = 1, nh = 30, nboot = 500, tstat = "KS",
+                     parallel = FALSE, ncores = NULL, seed = NULL){
 
 
 
 
   # Checking cluster ------------------------------------------------
 
-  if (isTRUE(cluster)) {
+  if (isTRUE(parallel)) {
     if (is.null(ncores)) {
       num_cores <- parallel::detectCores() - 1
     }else{
@@ -266,7 +266,7 @@ equalreg <- function(x, y, f, m_bandwidths = "cv", sigma_bandwidths = "cv",
   }
 
   iboot <- NULL
-  if (isTRUE(cluster)) {
+  if (isTRUE(parallel)) {
     Tboot <- foreach::foreach(iboot = 1:nboot, .combine = cbind) %dorng% {
 
 

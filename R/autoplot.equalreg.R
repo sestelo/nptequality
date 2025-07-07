@@ -3,8 +3,8 @@
 ggplot2::autoplot
 #' Visualization of \code{equalreg} objects with ggplot2 graphics
 #'
-#' @description Useful for drawing the estimated functions (regression mean and
-#' conditional variance) for each group or population. Additionally, the empirical
+#' @description Useful for drawing the estimated functions (regression and
+#' conditional variance functions) for each group or population. Additionally, the empirical
 #' cumulative distribution functions for the residuals of each group are displayed.
 #'
 #' @param object Object of \code{equalreg} class.
