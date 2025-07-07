@@ -31,7 +31,7 @@ ggplot2::autoplot
 #' y <- c(y1, y2)
 #' f <- c(rep(1, n1), rep(2, n2))
 #' out <- equalreg(x = x, y = y, f = f, tstat = "KS", hmin = 0.05, hmax = 0.5,
-#' nh = 46, nboot = 100, cluster = FALSE, seed = 300716)
+#' nh = 46, nboot = 100, parallel = FALSE, seed = 300716)
 #' autoplot(out)
 #' autoplot(out, interactive = TRUE)
 #'
@@ -76,9 +76,14 @@ autoplot.equalreg <- function(object = object, interactive = FALSE, ...){
     }
 
 
-    data <- data.frame(x = unlist(object$x), y = unlist(object$y),
+
+
+
+      data <- data.frame(x = unlist(object$x), y = unlist(object$y),
                        f = as.factor(unlist(object$f)),
                        m_hat = m_hat, m0_hat = m0_hat, sigma_hat = sigma_hat)
+
+      pal <- scales::hue_pal()(j)
 
     plots <- list()
     plots[[1]] <- ggplot2::ggplot(data, aes(x = x, y = y, colour = f)) + geom_point() +
@@ -86,36 +91,41 @@ autoplot.equalreg <- function(object = object, interactive = FALSE, ...){
       geom_line(aes(x = x, y = m0_hat, colour = f), linetype = "dashed") +
       ggtitle("Estimated regression functions") +
       xlab("covariate") +
-      ylab("response")
+      ylab("response") +
+      scale_colour_manual(values = pal)
 
 
     plots[[2]] <- ggplot2::ggplot(data, aes(x = x, y = sigma_hat, colour = f)) + geom_line() +
       ggtitle("Conditional variance functions") +
       xlab("covariate") +
       ylab("sigma") +
-      scale_y_continuous(limits = c(min(data$y), max(data$y)))
+      scale_y_continuous(limits = c(min(data$sigma_hat), max(data$sigma_hat))) +
+      scale_colour_manual(values = pal)
 
 
 
     for(i in 1:j){
       data <- data.frame(eps = object$eps_hat[[i]], eps0 = object$eps0_hat[[i]])
       plots[[i+2]] <- ggplot2::ggplot(data, aes(eps)) +
-        stat_ecdf(geom = "step", colour = scales::hue_pal()(i)[i]) +
-  stat_ecdf(geom = "step", aes(eps0)) +
+        stat_ecdf(geom = "step", colour = pal[i]) +
+        stat_ecdf(geom = "step", aes(eps0)) +
         ggtitle(paste("F_eps", i))
     }
 
-    combined_plot <- patchwork::wrap_plots(plots)
 
 
 
 
-  if(interactive == TRUE){
+    combined_plot <- patchwork::wrap_plots(plots, ncol = 2, nrow = ceiling((j + 2) / 2  ) )
 
-    interactive_plots <- lapply(plots, function(x){x + ggtitle("")})
-    interactive_plots <- lapply(interactive_plots, plotly::ggplotly)
-    combined_plot <- plotly::subplot(interactive_plots, nrows = (j/2) + 1, titleX = TRUE,
-                    titleY = TRUE,  margin = 0.05)
+
+
+    if(interactive == TRUE){
+
+      interactive_plots <- lapply(plots, function(x){x + ggtitle("")})
+      interactive_plots <- lapply(interactive_plots, plotly::ggplotly)
+      combined_plot <- plotly::subplot(interactive_plots, nrows = ceiling((j + 2) / 2  ), titleX = TRUE,
+                                       titleY = TRUE,  margin = 0.05)
 
     }
     combined_plot

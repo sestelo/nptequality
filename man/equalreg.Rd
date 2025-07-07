@@ -13,9 +13,9 @@ equalreg(
   hmin = 0,
   hmax = 1,
   nh = 30,
-  nboot = 100,
+  nboot = 500,
   tstat = "KS",
-  cluster = FALSE,
+  parallel = FALSE,
   ncores = NULL,
   seed = NULL
 )
@@ -41,12 +41,12 @@ Default is "cv".}
 
 \item{nh}{Number of points in the grid for the bandwidths. Defaults to 30.}
 
-\item{nboot}{Number of bootstrap repeats. Defaults to 100.}
+\item{nboot}{Number of bootstrap repeats. Defaults to 500.}
 
 \item{tstat}{Test statistic to be used. Options include "KS"
-(Kolmogorov-Smirnov) or "CM" (Cramer-von Mises) type. Default is "KS".}
+(Kolmogorov-Smirnov) or "CM" (Cramér-von Mises) type. Default is "KS".}
 
-\item{cluster}{A logical value. If  \code{TRUE}, the
+\item{parallel}{A logical value. If  \code{TRUE}, the
 testing procedure is  parallelized. Note that there are cases
 (e.g., a low number of bootstrap repetitions) that R will gain in
 performance through serial computation. R takes time to distribute tasks
@@ -63,7 +63,7 @@ to be used is equal to the number of cores of the machine - 1.}
 }
 \value{
 A list containing test results,
-including the test statistic and p-value.
+including the test statistics and p-values.
 }
 \description{
 This function tests the hypothesis of equality of k regression functions
@@ -85,7 +85,7 @@ x <- c(x1, x2)
 y <- c(y1, y2)
 f <- c(rep(1, n1), rep(2, n2))
 out <- equalreg(x = x, y = y, f = f, tstat = "KS", hmin = 0.05, hmax = 0.5,
-nh = 46, nboot = 100, cluster = FALSE, seed = 300716)
+nh = 46, nboot = 100, parallel = FALSE, seed = 300716)
 out
 
 \dontrun{

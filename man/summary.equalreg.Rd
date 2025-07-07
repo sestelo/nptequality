@@ -15,13 +15,13 @@
 }
 \value{
 \code{summary.equalreg} computes and returns a list of summary
-information for a \code{equalreg} object.
+information for an \code{equalreg} object.
 
 \item{nboot}{Number of bootstrap repeats.}
 \item{n}{Total sample size.}
 \item{nj}{Sample size of each group.}
-\item{test.statistic}{Test statistic used.}
-\item{p-value}{p-value of the test.}
+\item{test.statistic}{Test statistics used.}
+\item{p-values}{p-values of the test.}
 \item{components}{A collection of components of the equalreg object.}
 }
 \description{

@@ -19,8 +19,8 @@ A ggplot object, so you can use common features from
 ggplot2 package to manipulate the plot.
 }
 \description{
-Useful for drawing the estimated functions (regression mean and
-conditional variance) for each group or population. Additionally, the empirical
+Useful for drawing the estimated functions (regression and
+conditional variance functions) for each group or population. Additionally, the empirical
 cumulative distribution functions for the residuals of each group are displayed.
 }
 \examples{
@@ -37,7 +37,7 @@ x <- c(x1, x2)
 y <- c(y1, y2)
 f <- c(rep(1, n1), rep(2, n2))
 out <- equalreg(x = x, y = y, f = f, tstat = "KS", hmin = 0.05, hmax = 0.5,
-nh = 46, nboot = 100, cluster = FALSE, seed = 300716)
+nh = 46, nboot = 100, parallel = FALSE, seed = 300716)
 autoplot(out)
 autoplot(out, interactive = TRUE)
 
