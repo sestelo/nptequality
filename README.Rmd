@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # nptequality: Nonparametric  Tests for the Equality of k Regression Functions
 
 [![DOI]()]() [![CRAN status]()]() [![CRAN RStudio mirror downloads]()]()
@@ -25,5 +19,5 @@ critical values of the test.
 
 <!-- Get the released version from CRAN: `install.packages("clustcurv")` -->
 
-Or the development version from GitHub:
+The development version from GitHub:
 `# install.packages("devtools") devtools::install_github("sestelo/nptequality")`
