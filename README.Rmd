@@ -12,4 +12,5 @@ The development version from GitHub:
 ```         
 # install.packages("devtools") 
 devtools::install_github("sestelo/nptequality")
+
 ```
