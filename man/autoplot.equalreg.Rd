@@ -4,13 +4,17 @@
 \alias{autoplot.equalreg}
 \title{Visualization of \code{equalreg} objects with ggplot2 graphics}
 \usage{
-\method{autoplot}{equalreg}(object = object, interactive = FALSE, ...)
+\method{autoplot}{equalreg}(object = object, interactive = FALSE, type = "all", ...)
 }
 \arguments{
 \item{object}{Object of \code{equalreg} class.}
 
 \item{interactive}{Logical flag indicating if an interactive plot with
 plotly is produced.}
+
+\item{type}{Character string indicating the type of plot to be produced. Options
+include "mean" (mean regression function), "var" (conditional variances function),
+"eps" (empirical distributions functions) or "all" (it includes all) type. Default is "all".}
 
 \item{\ldots}{Other options.}
 }

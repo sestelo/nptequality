@@ -10,6 +10,9 @@ ggplot2::autoplot
 #' @param object Object of \code{equalreg} class.
 #' @param interactive Logical flag indicating if an interactive plot with
 #' plotly is produced.
+#' @param type Character string indicating the type of plot to be produced. Options
+#' include "mean" (mean regression function), "var" (conditional variances function),
+#' "eps" (empirical distributions functions) or "all" (it includes all) type. Default is "all".
 #' @param \ldots Other options.
 #'
 #'
@@ -41,7 +44,7 @@ ggplot2::autoplot
 #' @importFrom patchwork wrap_plots
 #' @export
 
-autoplot.equalreg <- function(object = object, interactive = FALSE, ...){
+autoplot.equalreg <- function(object = object, interactive = FALSE, type = "all",...){
 
 
   if(!inherits(object, "equalreg")){
@@ -105,8 +108,8 @@ autoplot.equalreg <- function(object = object, interactive = FALSE, ...){
 
 
     for(i in 1:j){
-      data <- data.frame(eps = object$eps_hat[[i]], eps0 = object$eps0_hat[[i]])
-      plots[[i+2]] <- ggplot2::ggplot(data, aes(eps)) +
+      dataeps <- data.frame(eps = object$eps_hat[[i]], eps0 = object$eps0_hat[[i]])
+      plots[[i+2]] <- ggplot2::ggplot(dataeps, aes(eps)) +
         stat_ecdf(geom = "step", colour = pal[i]) +
         stat_ecdf(geom = "step", aes(eps0)) +
         ggtitle(paste("F_eps", i))
@@ -114,20 +117,75 @@ autoplot.equalreg <- function(object = object, interactive = FALSE, ...){
 
 
 
-
-
-    combined_plot <- patchwork::wrap_plots(plots, ncol = 2, nrow = ceiling((j + 2) / 2  ) )
-
-
-
-    if(interactive == TRUE){
-
-      interactive_plots <- lapply(plots, function(x){x + ggtitle("")})
-      interactive_plots <- lapply(interactive_plots, plotly::ggplotly)
-      combined_plot <- plotly::subplot(interactive_plots, nrows = ceiling((j + 2) / 2  ), titleX = TRUE,
-                                       titleY = TRUE,  margin = 0.05)
-
+     if(type == "mean"){
+      #combined_plot <- plots[[1]]
+       combined_plot <- ggplot2::ggplot(data, aes(x = x, y = y, colour = f)) +
+         geom_line(aes(x = x, y = m_hat, colour = f)) +
+         ggtitle("Estimated regression functions") +
+         xlab("covariate") +
+         ylab("response") +
+         scale_colour_manual(values = pal)
+    } else if(type == "var"){
+      combined_plot <- plots[[2]]
+    } else if(type == "eps"){
+      combined_plot <- patchwork::wrap_plots(plots[-(1:2)], ncol = 2, nrow = ceiling((j) / 2  ) )
+    } else if(type == "all"){
+      combined_plot <- patchwork::wrap_plots(plots, ncol = 2, nrow = ceiling((j + 2) / 2  ) )
+    } else {
+      stop("Invalid type argument. Choose from 'mean', 'var', 'eps', or 'all'.")
     }
+
+    #combined_plot <- patchwork::wrap_plots(plots, ncol = 2, nrow = ceiling((j + 2) / 2  ) )
+
+
+
+    # if(interactive == TRUE){
+    #
+    #   interactive_plots <- lapply(plots, function(x){x + ggtitle("")})
+    #   interactive_plots <- lapply(interactive_plots, plotly::ggplotly)
+    #   combined_plot <- plotly::subplot(interactive_plots, nrows = ceiling((j + 2) / 2  ), titleX = TRUE,
+    #                                    titleY = TRUE,  margin = 0.05)
+    #
+    # }
+
+
+    if (interactive == TRUE) {
+
+      if (type == "mean") {
+        selected_plots <- list(
+          plota <- ggplot2::ggplot(data, aes(x = x, y = y, colour = f)) +
+            geom_line(aes(x = x, y = m_hat, colour = f)) +
+            ggtitle("Estimated regression functions") +
+            xlab("covariate") +
+            ylab("response") +
+            scale_colour_manual(values = pal)
+        )
+
+      } else if (type == "var") {
+        selected_plots <- list(plots[[2]])
+      } else if (type == "eps") {
+        selected_plots <- plots[-(1:2)]
+      } else if (type == "all") {
+        selected_plots <- plots
+      }
+
+
+      interactive_plots <- lapply(selected_plots, function(x) x + ggtitle(""))
+      interactive_plots <- lapply(interactive_plots, plotly::ggplotly)
+
+      titles <- sapply(selected_plots, function(p) p$labels$title) # no funciona
+
+      combined_plot <- plotly::subplot(
+        interactive_plots,
+        nrows = ceiling(length(interactive_plots) / 2),
+        titleX = TRUE,
+        titleY = TRUE,
+        margin = 0.05
+      )
+
+}
+
+
     combined_plot
 
     #return(invisible(object))
