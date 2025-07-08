@@ -1,6 +1,10 @@
-# nptequality: Nonparametric  Tests for the Equality of k Regression Functions
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-[![DOI]()]() [![CRAN status]()]() [![CRAN RStudio mirror downloads]()]()
+# nptequality: Nonparametric Tests for the Equality of k Regression Functions
 
 `nptequality` is an R package that provides a method to test the
 hypothesis of equality of the k regression functions. The test is based
